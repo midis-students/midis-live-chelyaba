@@ -46,7 +46,6 @@ export default function Announcement() {
           before={<Avatar size={48} src={getAvatarUrl('user_ti')} />}
           caption="9:00-18:00"
           after="13 фев"
-          S
           actions={
             <ButtonGroup mode="horizontal" gap="s" stretched>
               <Button mode="primary" size="s">
