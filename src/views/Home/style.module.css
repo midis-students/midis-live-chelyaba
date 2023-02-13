@@ -1,0 +1,7 @@
+.group {
+  height: 100vh;
+}
+
+.group > .vkuiGroup__inner {
+  height: 100%;
+}

@@ -1,31 +1,42 @@
-import {
-  AppRoot,
-  SplitLayout,
-  PanelHeader,
-  SplitCol,
-  View,
-  Panel,
-  Group,
-  Header,
-  SimpleCell,
-} from "@vkontakte/vkui";
+import React from 'react';
+import { Icon28FireAltOutline, Icon28HomeOutline } from '@vkontakte/icons';
+import { AppRoot, SplitCol, Epic, Tabbar, TabbarItem, ScreenSpinner } from '@vkontakte/vkui';
+import Home from './views/Home';
+import Events from './views/Events';
 
 const App = () => {
+  const [activeStory, setActiveStory] = React.useState('home');
+  const onStoryChange = (e: any) => setActiveStory(e.currentTarget.dataset.story);
   return (
     <AppRoot>
-      <SplitLayout header={<PanelHeader separator={false} />}>
-        <SplitCol autoSpaced>
-          <View activePanel="main">
-            <Panel id="main">
-              <PanelHeader>VKUI</PanelHeader>
-              <Group header={<Header mode="secondary">Items</Header>}>
-                <SimpleCell>Hello</SimpleCell>
-                <SimpleCell>World</SimpleCell>
-              </Group>
-            </Panel>
-          </View>
-        </SplitCol>
-      </SplitLayout>
+      <SplitCol stretchedOnMobile autoSpaced>
+        <Epic
+          activeStory={activeStory}
+          tabbar={
+            <Tabbar>
+              <TabbarItem
+                onClick={onStoryChange}
+                selected={activeStory === 'home'}
+                data-story="home"
+                text="Главная"
+              >
+                <Icon28HomeOutline />
+              </TabbarItem>
+              <TabbarItem
+                onClick={onStoryChange}
+                selected={activeStory === 'events'}
+                data-story="events"
+                text="События"
+              >
+                <Icon28FireAltOutline />
+              </TabbarItem>
+            </Tabbar>
+          }
+        >
+          <Home id="home" />
+          <Events id="events" />
+        </Epic>
+      </SplitCol>
     </AppRoot>
   );
 };
