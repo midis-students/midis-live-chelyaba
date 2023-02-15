@@ -1,6 +1,7 @@
 import { View, Panel, PanelHeader, Group } from '@vkontakte/vkui';
 import Announcement from '@/components/Announcement';
 import { AnnouncementEvents } from '@/types/api';
+import { Panels } from '@/router';
 
 type EventsProps = {
   id: string;
@@ -21,8 +22,8 @@ for (let i = 0; i < 15; i++) {
 
 export default function Events(props: EventsProps) {
   return (
-    <View id={props.id} activePanel="events">
-      <Panel id="events">
+    <View id={props.id} activePanel={Panels.Events}>
+      <Panel id={Panels.Events}>
         <PanelHeader>События</PanelHeader>
         <Group>
           {events.map((event, index) => (

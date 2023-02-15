@@ -1,3 +1,5 @@
+import { Modals } from '@/router';
+import { useRouter } from '@happysanta/router';
 import { Icon24Filter } from '@vkontakte/icons';
 import { Card, Group, SubnavigationBar, SubnavigationButton, Touch } from '@vkontakte/vkui';
 import { TouchEventHandler } from '@vkontakte/vkui/dist/components/Touch/Touch';
@@ -18,6 +20,10 @@ export default function MapOverlay() {
   const ref = React.useRef<HTMLDivElement>(null);
   const [height, setHeight] = React.useState(80);
 
+  const router = useRouter();
+
+  const openModal = () => router.pushModal(Modals.Filter);
+
   const resize = () => {
     setHeight((prev) => (prev === maxHeight ? minHeight : maxHeight));
   };
@@ -25,7 +31,7 @@ export default function MapOverlay() {
   return (
     <Group className="overlay" getRootRef={ref} style={{ height: height + 'vh' }}>
       <SubnavigationBar>
-        <SubnavigationButton before={<Icon24Filter />} expandable selected>
+        <SubnavigationButton before={<Icon24Filter />} expandable selected onClick={openModal}>
           Фильтры
         </SubnavigationButton>
         {filters.map((filter) => (

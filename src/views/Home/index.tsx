@@ -1,5 +1,8 @@
-import { View, Panel, Group, PanelHeader } from '@vkontakte/vkui';
+import { Panels } from '@/router';
+import { Group, Panel, PanelHeader, View } from '@vkontakte/vkui';
+import React from 'react';
 import { YMaps, Map } from 'react-yandex-maps';
+import Filter from './Filter';
 import './home.css';
 import MapOverlay from './MapOverlay';
 
@@ -14,8 +17,8 @@ const mapSetting = {
 
 export default function Home(props: HomeProps) {
   return (
-    <View id={props.id} activePanel="home">
-      <Panel id="home">
+    <View id={props.id} activePanel={Panels.Map}>
+      <Panel id={Panels.Map}>
         <PanelHeader>Главная</PanelHeader>
         <Group className="group">
           <YMaps>
