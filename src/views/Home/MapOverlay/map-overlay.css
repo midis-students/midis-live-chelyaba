@@ -1,0 +1,34 @@
+.overlay {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 85vh;
+  transition: height 500ms ease-in-out;
+}
+
+.overlay > .vkuiGroup__inner,
+.overlay > .vkuiGroup__inner > .vkuiCard {
+  height: 100%;
+}
+.overlay > .vkuiGroup__inner > .vkuiCard::after {
+  pointer-events: none;
+}
+
+.overlay__touch {
+  height: 2em;
+}
+
+.overlay__touch::after {
+  position: absolute;
+  display: block;
+  content: ' ';
+  width: 20%;
+  height: 0.25rem;
+  border-radius: 10px;
+  margin: auto;
+  top: 30%;
+  left: 0;
+  right: 0;
+  background-color: var(--vkui--color_text_tertiary);
+  pointer-events: none;
+}

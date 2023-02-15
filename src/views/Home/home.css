@@ -1,5 +1,5 @@
 .group {
-  height: 100vh;
+  height: calc(90vh - var(--vkui_internal--tabbar_height));
 }
 
 .group > .vkuiGroup__inner {
