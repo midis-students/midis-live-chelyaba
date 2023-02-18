@@ -1,17 +1,10 @@
-import { Icon24Dismiss } from '@vkontakte/icons';
 import {
-  CustomSelectOption,
   FormItem,
   FormLayout,
   FormLayoutGroup,
   Input,
   ModalPage,
   ModalPageHeader,
-  Panel,
-  PanelHeaderButton,
-  PanelHeaderClose,
-  platform,
-  Platform,
   Radio,
   Select,
 } from '@vkontakte/vkui';
@@ -37,15 +30,9 @@ export default function Filter({ id, closeModal }: { id: string; closeModal: () 
           <Input placeholder="До" />
         </FormItem>
       </FormLayoutGroup>
-
+      {/*
       <FormItem top="Где искать">
-        <Select
-          placeholder="Район"
-          options={regions}
-          renderOption={({ option, ...restProps }) => (
-            <CustomSelectOption {...restProps} key={option.value} />
-          )}
-        />
+        <Select placeholder="Район" options={regions} />
       </FormItem>
 
       <FormLayout>
@@ -63,7 +50,10 @@ export default function Filter({ id, closeModal }: { id: string; closeModal: () 
             Дешевле
           </Radio>
         </FormItem>
+
       </FormLayout>
+
+  */}
     </ModalPage>
   );
 }

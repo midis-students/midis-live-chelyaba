@@ -32,3 +32,7 @@
   background-color: var(--vkui--color_text_tertiary);
   pointer-events: none;
 }
+
+.overlay__list {
+  overflow-y: auto;
+}

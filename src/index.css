@@ -1,3 +1,10 @@
+:root {
+  --main-group-height: calc(
+    100vh - var(--vkui_internal--tabbar_height) - var(--vkui--size_panel_header_height--regular)
+  );
+}
+
 #root {
   height: 100%;
+  overflow: hidden;
 }

@@ -6,14 +6,20 @@ import '@vkontakte/vkui/dist/vkui.css';
 import './index.css';
 import { RouterContext } from '@happysanta/router';
 import { router } from './router';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import './lib/api';
 
 bridge.send('VKWebAppInit');
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ConfigProvider>
     <AdaptivityProvider>
       <RouterContext.Provider value={router}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </RouterContext.Provider>
     </AdaptivityProvider>
   </ConfigProvider>,
