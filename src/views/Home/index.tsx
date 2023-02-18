@@ -15,6 +15,7 @@ const mapSetting = {
   zoom: 14,
 };
 
+
 export default function Home(props: HomeProps) {
   return (
     <View id={props.id} activePanel={Panels.Map}>
