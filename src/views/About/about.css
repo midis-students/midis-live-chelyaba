@@ -1,0 +1,9 @@
+.bottom-buttons {
+  margin-top: auto;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.go-button {
+  flex: 1;
+}

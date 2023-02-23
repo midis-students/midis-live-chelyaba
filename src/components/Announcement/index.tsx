@@ -1,33 +1,32 @@
 import { Button, Avatar, ButtonGroup, RichCell } from '@vkontakte/vkui';
-import { Icon16Verified } from '@vkontakte/icons';
+import { useRouter } from '@happysanta/router';
+import { APIPlace } from '@/lib/api/types';
+import { Pages } from '@/router';
 
 type AnnouncementProps = {
-  caption: string;
-  date?: string;
-  name: string;
-  avatar: string;
+  item: APIPlace;
 };
 
-export default function Announcement(props: AnnouncementProps) {
+export default function Announcement({ item }: AnnouncementProps) {
+  const router = useRouter();
+  const openAbout = () => router.pushPage(Pages.About, { id: item.id });
+
   return (
     <RichCell
-      before={<Avatar size={48} src={props.avatar} loading="lazy" />}
-      caption={props.caption}
-      after={props?.date}
+      before={<Avatar size={48} src={item.logo} loading="lazy" />}
+      caption={item.address}
+      after={item.price.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
       actions={
         <ButtonGroup mode="horizontal" gap="s" stretched>
-          <Button mode="primary" size="s">
-            Принять
-          </Button>
-          <Button mode="secondary" size="s">
-            Отклонить
+          <Button mode="primary" size="s" onClick={openAbout}>
+            Подробнее
           </Button>
         </ButtonGroup>
       }
       multiline
       disabled
     >
-      {props.name}
+      {item.name}
     </RichCell>
   );
 }

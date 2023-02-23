@@ -9,6 +9,7 @@ import Filter from './views/Home/Filter';
 import Favorite from './views/Favorite';
 import { Locale } from './locale';
 import { useSnackbar } from './store/Snackbar';
+import AboutPage from './views/About';
 
 const App = () => {
   const snackbar = useSnackbar((select) => select.current);
@@ -69,6 +70,7 @@ const App = () => {
           <Home id={Views.Main} />
           <Events id={Views.Events} />
           <Favorite id={Views.Favorite} />
+          <AboutPage id={Views.About} />
         </Epic>
         {snackbar}
       </SplitLayout>

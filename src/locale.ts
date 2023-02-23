@@ -3,5 +3,6 @@ export const Locale = {
     main: 'Главное',
     events: 'События',
     favorite: 'Избранное',
+    about: 'Подробнее',
   },
 };

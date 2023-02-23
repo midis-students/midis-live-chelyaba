@@ -28,9 +28,6 @@ const maxHeight = 85;
 
 const events: AnnouncementEvents[] = [];
 
-const getFormatedDate = (date: Date) =>
-  date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
-
 export default function MapOverlay() {
   const { data, isSuccess, isLoading } = useAnnouncement();
   const ref = React.useRef<HTMLDivElement>(null);
@@ -65,10 +62,7 @@ export default function MapOverlay() {
             className="overlay__list"
             style={{ height: height / 1.25 + 'vh', pointerEvents: isFull ? 'auto' : 'none' }}
           >
-            {isSuccess &&
-              data.map((event, index) => (
-                <Announcement key={index} avatar={event.logo} name={event.name} caption={''} />
-              ))}
+            {isSuccess && data.map((event, index) => <Announcement key={index} item={event} />)}
           </List>
         )}
       </Card>
