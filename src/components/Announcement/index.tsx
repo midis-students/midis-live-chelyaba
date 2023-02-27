@@ -2,6 +2,7 @@ import { Button, Avatar, ButtonGroup, RichCell } from '@vkontakte/vkui';
 import { useRouter } from '@happysanta/router';
 import { APIPlace } from '@/lib/api/types';
 import { Pages } from '@/router';
+import { useFavorite } from '@/store/favorite';
 
 type AnnouncementProps = {
   item: APIPlace;

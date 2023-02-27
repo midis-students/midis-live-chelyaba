@@ -9,6 +9,7 @@ export default function useAnnouncement() {
     queryFn: () => Api.instance.getList(),
     queryKey: ['announcement'],
     staleTime: 5000,
+    retry: 2,
     onError: (err) => {
       if (err instanceof Error) showError(err.message);
     },

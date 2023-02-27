@@ -26,6 +26,11 @@ export class Api {
     return listResponse;
   }
 
+  async getListById(ids: string[]) {
+    const list = await this.request<APIPlace[]>('/list?id=' + ids.join());
+    return list;
+  }
+
   getType(id: string): { id: string; label: string } {
     return {
       id,

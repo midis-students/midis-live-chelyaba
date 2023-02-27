@@ -1,6 +1,7 @@
 import useAnnouncement from '@/lib/api/hooks/useAnnouncement';
 import { Locale } from '@/locale';
 import { Panels } from '@/router';
+import { useFilter } from '@/store/filter';
 import { Group, Panel, PanelHeader, View } from '@vkontakte/vkui';
 import React from 'react';
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps';
@@ -19,6 +20,18 @@ const mapSetting = {
 
 export default function Home(props: HomeProps) {
   const { data, isSuccess } = useAnnouncement();
+  const { has, list, price } = useFilter();
+
+  let filterlist = data as NonNullable<typeof data>;
+  if (isSuccess && data) {
+    if (list.length) {
+      filterlist = filterlist.filter((point) => has(point.type));
+    }
+
+    filterlist = filterlist.filter(
+      (point) => point.price >= (price.min || 0) && point.price <= (price.max || Number.MAX_VALUE),
+    );
+  }
 
   return (
     <View id={props.id} activePanel={Panels.Map}>
@@ -29,7 +42,7 @@ export default function Home(props: HomeProps) {
             <Map defaultState={mapSetting} width="100%" height="100%">
               <Clusterer>
                 {isSuccess &&
-                  data.map((point) => (
+                  filterlist.map((point) => (
                     <Placemark
                       defaultGeometry={point.geoPoint}
                       properties={{ iconCaption: point.name }}

@@ -18,14 +18,14 @@ import { useQueryClient } from 'react-query';
 import './about.css';
 
 import {
-  Icon28BusOutline,
-  Icon28BookmarkAddOutline,
   Icon28PinOutline,
+  Icon28UnpinOutline,
   Icon28PhoneOutline,
   Icon28ClockOutline,
   Icon28ShareOutline,
 } from '@vkontakte/icons';
 import { useEffect } from 'react';
+import { useFavorite } from '@/store/favorite';
 
 type AboutPage = {
   id: string;
@@ -35,8 +35,24 @@ export default function AboutPage(props: AboutPage) {
   const router = useRouter();
   const client = useQueryClient();
   const { id } = useParams(Panels.About);
+  const { has, add, remove } = useFavorite((select) => ({
+    has: select.has,
+    add: select.add,
+    remove: select.remove,
+  }));
 
-  const data = client.getQueryData<APIPlace[]>(['announcement'])!.find((place) => place.id === id);
+  const data = client.getQueryData<APIPlace[]>(['announcement'])?.find((place) => place.id === id);
+
+  const inFavorite = has(data?.id as string);
+
+  const handleClick = () => {
+    console.log(inFavorite);
+    if (inFavorite) {
+      remove(id);
+    } else {
+      add(id);
+    }
+  };
 
   useEffect(() => {
     if (!data) {
@@ -73,16 +89,16 @@ export default function AboutPage(props: AboutPage) {
           ))}
         </Group>
         <Group>
-          <SimpleCell before={<Icon28PinOutline />}>Пойду</SimpleCell>
           <SimpleCell before={<Icon28ShareOutline />}>Позвать друзей</SimpleCell>
         </Group>
 
         <ButtonGroup className="bottom-buttons">
-          <Button before={<Icon28PinOutline />} className="go-button">
-            Пойду
-          </Button>
-          <Button>
-            <Icon28BookmarkAddOutline />
+          <Button
+            before={inFavorite ? <Icon28UnpinOutline /> : <Icon28PinOutline />}
+            className="go-button"
+            onClick={handleClick}
+          >
+            {inFavorite ? 'Не пойду' : 'Пойду'}
           </Button>
         </ButtonGroup>
       </Panel>
