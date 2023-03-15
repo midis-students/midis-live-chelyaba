@@ -1,6 +1,5 @@
 import { View, Panel, PanelHeader, Group, PanelSpinner } from '@vkontakte/vkui';
 import Announcement from '@/components/Announcement';
-import { AnnouncementEvents } from '@/types/api';
 import { Panels } from '@/router';
 import { Locale } from '@/locale';
 import useAnnouncement from '@/lib/api/hooks/useAnnouncement';
@@ -8,8 +7,6 @@ import useAnnouncement from '@/lib/api/hooks/useAnnouncement';
 type EventsProps = {
   id: string;
 };
-
-const events: AnnouncementEvents[] = [];
 
 export default function Events(props: EventsProps) {
   const { data, isSuccess, isLoading } = useAnnouncement();
